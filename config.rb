@@ -60,6 +60,9 @@ end
 #   end
 # end
 
+# Use "nice URLs" with index.html for each file
+activate :directory_indexes
+
 set :css_dir, 'stylesheets'
 
 set :js_dir, 'javascripts'
