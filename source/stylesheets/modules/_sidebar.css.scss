@@ -32,4 +32,12 @@
       }
     }
   }
+
+  .sidebar-archive {
+    padding-top: 20px;
+    padding-right: 5px;
+    text-align: right;
+    clear: both;
+    @include adjust-font-size-to(12px);
+  }
 }
