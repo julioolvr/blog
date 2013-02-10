@@ -1,0 +1,23 @@
+@import "compass";
+
+@media screen and (max-width: 799px) {
+  .sidebar {
+    @include clearfix;
+    position: static;
+    float: none;
+    width: 100%;
+    height: auto;
+    padding-top: 20px;
+    padding-bottom: 20px;
+
+    .sidebar-social {
+      clear: none;
+      float: left;
+      margin-left: 10px;
+
+      .icon {
+        padding-top: 0;
+      }
+    }
+  }
+}
