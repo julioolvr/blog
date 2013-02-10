@@ -1,6 +1,10 @@
 #Markdown
 set :markdown_engine, :redcarpet
 
+#Syntax higlight
+set :markdown, fenced_code_blocks: true, smartypants: true
+activate :syntax
+
 #Livereload
 activate :livereload
 
