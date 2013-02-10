@@ -6,6 +6,7 @@ cd ..;
 rm -rf julioolvr.github.com/*;
 cp -r blog/build/* julioolvr.github.com/;
 cd julioolvr.github.com;
+git add .;
 git add -u;
 git ci -m "Blog update";
 git push origin master;
