@@ -44,6 +44,9 @@ activate :livereload
 ###
 activate :blog do |blog|
   blog.sources = "posts/:year-:month-:day-:title.html"
+  blog.per_page = 10
+  blog.paginate = true
+  blog.layout = 'posts'
 end
 
 ###
@@ -84,7 +87,7 @@ configure :build do
   # activate :cache_buster
 
   # Use relative URLs
-  # activate :relative_assets
+  activate :relative_assets
 
   # Compress PNGs after build
   # First: gem install middleman-smusher

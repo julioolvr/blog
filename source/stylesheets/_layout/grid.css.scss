@@ -10,7 +10,7 @@ $break          : 12;
 
 .main {
   @include container($total-columns, $break);
-  //@include susy-grid-background;
+  float: left;
 }
 
 @include at-breakpoint($break) {

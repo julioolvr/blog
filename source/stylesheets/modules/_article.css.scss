@@ -1,0 +1,14 @@
+@import "compass";
+
+.index-post {
+  margin-top: 10px;
+
+  & > h2 {
+    margin-bottom: 0;
+  }
+
+  .index-post-date {
+    font-style: italic;
+    @include adjust-font-size-to(12px);
+  }
+}
