@@ -1,20 +1,15 @@
 @import "compass";
 
 .sidebar {
-  width: 200px;
   height: 100%;
-  background-image: url('../images/background.png');
-  float: left;
-  text-align: center;
-  padding-top: 40px;
-  position: fixed;
-  @include box-sizing(border-box);
+  padding-top: 10px;
+  background-color: rgba(#fff, 0.5);
 
   .sidebar-profile-pic {
     width: 73px;
     height: 73px;
     float: right;
-    @include border-left-radius(7px);
+    @include border-radius(7px);
   }
 
   .sidebar-social {
@@ -24,7 +19,7 @@
     .icon {
       float: left;
       padding-top: 10px;
-      padding-right: 5px;
+      padding-left: 5px;
 
       img {
         width: 32px;
