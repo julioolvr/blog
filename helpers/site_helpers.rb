@@ -1,9 +1,10 @@
+# encoding: UTF-8
 module SiteHelpers
 
   def page_title
     title = "Julio"
     if data.page.title
-      title << " | " + data.page.title
+      title << " » " + data.page.title
     end
     title
   end
