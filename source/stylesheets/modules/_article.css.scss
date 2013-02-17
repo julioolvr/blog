@@ -1,5 +1,12 @@
 @import "compass";
 
+.post {
+  .comments {
+    padding-top: 10px;
+    padding-bottom: 10px;
+  }
+}
+
 .index-post {
   & > h2 {
     margin-bottom: 0;
@@ -9,9 +16,4 @@
     font-style: italic;
     @include adjust-font-size-to(12px);
   }
-}
-
-#disqus_thread {
-  padding-top: 10px;
-  padding-bottom: 10px;
 }
