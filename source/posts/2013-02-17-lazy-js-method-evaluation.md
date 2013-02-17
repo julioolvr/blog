@@ -5,6 +5,7 @@ published: false
 
 El otro día, mirando contra mi voluntad el código de [CKEditor](https://github.com/ckeditor/ckeditor-dev), me encontré con un patrón para evaluación lazy de los métodos de un objeto JS bastante copado (y probablemente conocido).
 
+READMORE
 Por ejemplo, digamos que un método de un objeto tiene una parte excesivamente costosa, representada convenientemente por una función llamada `doSomethingExpensive`.
 
 ```js
