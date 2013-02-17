@@ -10,3 +10,8 @@
     @include adjust-font-size-to(12px);
   }
 }
+
+#disqus_thread {
+  padding-top: 10px;
+  padding-bottom: 10px;
+}
