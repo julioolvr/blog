@@ -1,6 +1,5 @@
 ---
 title: Lazy JS method evaluation
-published: false
 tags: javascript
 ---
 
