@@ -1,13 +1,22 @@
 @import "compass";
 
 .post {
+  & > h1 {
+    margin-bottom: 0;
+  }
+
+  .date {
+    color: gray;
+    float: right;
+    @include adjust-font-size-to(12px);
+  }
+
   .comments {
     padding-top: 10px;
     padding-bottom: 10px;
   }
 
   .tags {
-    float: right;
     font-size: 0.8em;
     margin-bottom: 10px;
   }

@@ -1,0 +1,17 @@
+---
+pageable: true
+per_page: 20
+---
+%h1= tagname
+
+%ul.post-list
+  - page_articles.each do |post|
+    %li
+      %span.post-list-date= post.date.strftime('%Y/%m/%d')
+      = link_to post.title, post
+- if paginate && (prev_page || next_page)
+  - if prev_page
+    %span= link_to '«', prev_page
+  = "#{page_number} de #{num_pages}"
+  - if next_page
+    %span= link_to '»', next_page

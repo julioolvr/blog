@@ -1,0 +1,9 @@
+.post-list {
+  list-style: none;
+
+  .post-list-date {
+    color: gray;
+    font-style: italic;
+    @include adjust-font-size-to(12px);
+  }
+}

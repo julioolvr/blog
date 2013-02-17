@@ -1,12 +1,13 @@
 - wrap_layout :layout do
   %article.post
+    .date
+      = current_article.date.strftime('%Y/%m/%d')
     %h1
       = current_article.title
-    = yield
-    %hr
     .tags
       Tags:
       = tag_links(current_article)
+    = yield
     .comments
       #disqus_thread
       :javascript
