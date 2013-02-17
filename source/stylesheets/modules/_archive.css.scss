@@ -1,9 +1,0 @@
-.post-archive {
-  list-style: none;
-
-  .post-archive-date {
-    color: gray;
-    font-style: italic;
-    @include adjust-font-size-to(12px);
-  }
-}

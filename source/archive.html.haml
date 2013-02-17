@@ -4,10 +4,10 @@ per_page: 20
 ---
 
 %h1 Archivo
-%ul.post-archive
+%ul.post-list
   - page_articles.each do |post|
     %li
-      %span.post-archive-date= post.date.strftime('%Y/%m/%d')
+      %span.post-list-date= post.date.strftime('%Y/%m/%d')
       = link_to post.title, post
 - if paginate && (prev_page || next_page)
   - if prev_page

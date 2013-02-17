@@ -51,6 +51,7 @@ activate :blog do |blog|
   blog.per_page = 10
   blog.paginate = true
   blog.layout = 'posts'
+  blog.tag_template = 'tag.html'
 end
 
 ###

@@ -3,6 +3,10 @@
     %h1
       = current_article.title
     = yield
+    %hr
+    .tags
+      Tags:
+      = tag_links(current_article)
     .comments
       #disqus_thread
       :javascript
