@@ -9,3 +9,4 @@ gem "redcarpet"
 gem "middleman-blog"
 gem "coffee-filter" # Coffeescript filter for HAML
 gem "middleman-syntax"
+gem "builder"

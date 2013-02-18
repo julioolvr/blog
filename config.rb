@@ -1,3 +1,5 @@
+require 'builder'
+
 #Markdown
 set :markdown_engine, :redcarpet
 
