@@ -2,37 +2,23 @@
 
 .sidebar {
   height: 100%;
-  padding-top: 10px;
+  padding-top: 100px;
   background-color: rgba(#fff, 0.5);
+  position: fixed;
+  border-left: 1px solid #dfdfdf;
 
   .sidebar-profile-pic {
-    width: 73px;
-    height: 73px;
-    float: right;
-    @include border-radius(7px);
+    width: 150px;
+    height: 150px;
+    border-bottom: solid 2px $link;
   }
 
-  .sidebar-social {
-    clear: both;
-    float: right;
-
-    .icon {
-      float: left;
-      padding-top: 10px;
-      padding-left: 5px;
-
-      img {
-        width: 32px;
-        height: 32px;
-      }
-    }
-  }
-
-  .sidebar-archive {
-    padding-top: 20px;
-    padding-right: 5px;
-    text-align: right;
-    clear: both;
+  .sidebar-bio {
+    margin: 1em 0;
+    padding: 0;
+    list-style: none;
+    font-family: 'Roboto', sans-serif;
+    font-weight: 300;
     @include adjust-font-size-to(12px);
   }
 }
