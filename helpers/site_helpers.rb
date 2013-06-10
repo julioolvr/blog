@@ -2,11 +2,7 @@
 module SiteHelpers
 
   def page_title
-    title = "Julio"
-    if data.page.title
-      title << " » " + data.page.title
-    end
-    title
+    data.page.title ? "#{data.page.title} | Julio" : "Julio"
   end
 
   def page_description
