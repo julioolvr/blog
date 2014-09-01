@@ -6,7 +6,7 @@
       = current_article.title
     .tags
       = tag_links(current_article)
-    = yield
+    ~ yield
     .comments
       #disqus_thread
       :javascript

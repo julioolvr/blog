@@ -6,7 +6,7 @@ pageable: true
   %article.index-post
     %h2= link_to article.title, article
     .index-post-date= article.date.strftime('%b %e')
-    = article.summary
+    ~ article.summary
 - if paginate
   - if prev_page
     %p= link_to 'Anterior', prev_page
