@@ -1,6 +1,7 @@
 ---
 title: Play ALL the games
 tags: games, nes, punchout, openemu, all-the-games
+published: false
 ---
 
 Metroid. Super Mario Bros. Monkey Island. The legend of Zelda. Hay toneladas de juegos que todos escuchamos nombrar, sabemos de qué se tratan y algún dato suelto. El personaje de Metroid en realidad es una mina, si corrés por arriba del segundo nivel del SMB llegás a un warp zone, Guybrush combate con rimas, y es peligroso andar solo en Hyrule (es complicado andar por ahí de noche).
