@@ -4,15 +4,15 @@
 *= require "_vendor/normalize.css"
 *= require "_vendor/html5bp.css"
 
-//Grid
-*= require "_layout/grid"
-
 */
 
 @import "fonts";
 @import "colors";
 @import "base";
 @import "syntax-highlight";
+
+@import "_layout/grid";
+
 @import "modules/sidebar";
 @import "modules/content";
 @import "modules/post-list";

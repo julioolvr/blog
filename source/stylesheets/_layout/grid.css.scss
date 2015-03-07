@@ -18,19 +18,3 @@ $grid-padding   : 0;
 .sidebar {
   @include span-columns(3 omega, $total-columns, 1em);
 }
-
-// TODO
-// @include at-breakpoint($media-layout) {
-//   .content {
-//     @include container;
-//     @include susy-grid-background;
-//   }
-
-//   .main {
-//     @include span-columns(5 omega);
-//   }
-
-//   .sidebar {
-//     @include span-columns(5 omega);
-//   }
-// }
