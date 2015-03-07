@@ -6,6 +6,7 @@ gem "middleman-favicon-maker"
 gem "middleman-livereload"
 gem "middleman-blog"
 gem "middleman-syntax"
+gem "middleman-deploy"
 
 gem "susy", "~> 1"
 gem "sass"
