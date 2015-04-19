@@ -1,14 +1,14 @@
 %section.sidebar
-  %a{href: '/'}
-    = image_tag 'http://www.gravatar.com/avatar/a81ad64d19c864be3c478b761f4b4817?s=150', class: 'sidebar-profile-pic'
-  %ul.sidebar-bio
-    %li julio olivera
-    %li software developer
-    %li
-      = succeed ',' do
-        %a{href: 'http://github.com/julioolvr', target: 'blank'} github
-      = succeed ',' do
-        %a{href: 'http://plus.google.com/117723231368654711284', target: 'blank'} g+
-      = succeed ',' do
-        %a{href: 'http://www.twitter.com/_joliv', target: 'blank'} twitter
-      %a{href: 'http://www.linkedin.com/in/julioolivera', target: 'blank'} linkedin
+  %a.profile-pic{ href: '/' }
+    = image_tag 'http://www.gravatar.com/avatar/a81ad64d19c864be3c478b761f4b4817?s=150'
+  .sidebar-bio
+    %a.name{ href: '/' } julio
+    / %li software developer
+    / %li
+    /   = succeed ',' do
+    /     %a{href: 'http://github.com/julioolvr', target: 'blank'} github
+    /   = succeed ',' do
+    /     %a{href: 'http://plus.google.com/117723231368654711284', target: 'blank'} g+
+    /   = succeed ',' do
+    /     %a{href: 'http://www.twitter.com/_joliv', target: 'blank'} twitter
+    /   %a{href: 'http://www.linkedin.com/in/julioolivera', target: 'blank'} linkedin

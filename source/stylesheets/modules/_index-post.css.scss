@@ -1,0 +1,21 @@
+.index-post {
+  margin: 2em 0;
+  padding: 0 5px;
+  text-align: left;
+
+  h2 {
+    font: {
+      size: 14px;
+      weight: normal;
+      family: 'Open Sans', sans-serif;
+    }
+  }
+
+  .index-post--date {
+    display: none;
+  }
+
+  .index-post--summary {
+    display: none;
+  }
+}

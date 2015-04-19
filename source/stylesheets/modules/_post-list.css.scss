@@ -1,9 +1,19 @@
 .post-list {
-  list-style: none;
+  h1 {
+    font-family: 'Oxygen', sans-serif;
+  }
 
-  .post-list-date {
-    color: gray;
-    font-style: italic;
-    @include adjust-font-size-to(12px);
+  ul {
+    list-style: none;
+    padding: 0;
+  }
+
+  li {
+    margin: 1em 0;
+  }
+
+  .post-list--date {
+    font-size: .8em;
+    color: #999;
   }
 }
