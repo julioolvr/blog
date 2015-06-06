@@ -1,11 +1,14 @@
 @import "compass";
+@import "susy";
+
+$borderColor: #dfdfdf;
 
 .sidebar {
   height: 100%;
   padding-top: 100px;
   background-color: rgba(#fff, 0.5);
   position: fixed;
-  border-left: 1px solid #dfdfdf;
+  border-left: 1px solid $borderColor;
 
   .sidebar-profile-pic {
     width: 150px;
@@ -20,5 +23,18 @@
     font-family: 'Roboto', sans-serif;
     font-weight: 300;
     @include adjust-font-size-to(12px);
+  }
+}
+
+@include at-breakpoint(5 800px) {
+  .sidebar {
+    position: static;
+    padding-top: 0;
+    border-left: none;
+    border-top: 1px solid $borderColor;
+
+    .sidebar-profile-pic {
+      display: none;
+    }
   }
 }

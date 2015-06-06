@@ -5,8 +5,6 @@ $column-width   : 4em;
 $gutter-width   : 1em;
 $grid-padding   : 0;
 
-// $media-layout: 5 35em;
-
 .content {
   @include container;
 }
@@ -17,4 +15,14 @@ $grid-padding   : 0;
 
 .sidebar {
   @include span-columns(3 omega, $total-columns, 1em);
+}
+
+@include at-breakpoint(5 800px) {
+  .main {
+    @include span-columns(5 omega, 5, 1.5em);
+  }
+
+  .sidebar {
+    @include span-columns(5 omega, 5, 1em);
+  }
 }
