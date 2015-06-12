@@ -63,6 +63,7 @@ activate :deploy do |deploy|
   deploy.method = :git
   deploy.remote = 'git@github.com:julioolvr/julioolvr.github.com.git'
   deploy.branch = 'master'
+  deploy.build_before = true
 end
 
 ###
