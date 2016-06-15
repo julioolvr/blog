@@ -13,6 +13,15 @@
     %meta{:content => "width=device-width", :name => "viewport"}
     %link{rel: 'author', href: 'https://plus.google.com/117723231368654711284/posts'}
 
+    = yield_content :head
+
+    - unless content_for?(:head)
+      %meta{ name: 'twitter:card', content: 'summary' }
+      %meta{ name: 'twitter:site', content: '@julioolvr' }
+      %meta{ name: 'twitter:title', content: page_title }
+      %meta{ name: 'twitter:description', content: page_description }
+      %meta{ name: 'twitter:image', content: gravatar_url }
+
     = javascript_include_tag "vendor/modernizr-2.6.1.min"
     = stylesheet_link_tag 'http://fonts.googleapis.com/css?family=Open+Sans|Bree+Serif'
     = stylesheet_link_tag 'http://fonts.googleapis.com/css?family=Roboto:400,100,300'
