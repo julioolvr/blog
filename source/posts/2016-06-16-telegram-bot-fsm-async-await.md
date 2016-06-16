@@ -301,7 +301,7 @@ complicated conditionals that are checked on each reply, because the pain it wou
 pain of maintaining it. So one possible way to create a mental model of it is to think of the bot being in one of several states,
 and being able to transition between them:
 
-![Bot states](2016-06-14-telegram-bot-fsm-async-await/fsm.png)
+![Bot states](2016-06-16-telegram-bot-fsm-async-await/fsm.png)
 
 Now, it's been a while since I studied finite state machines so I'm not going to pretend I remember them well enough to explain
 it here. I'll refer to the always trustworthy [Wikipedia article](https://en.wikipedia.org/wiki/Finite-state_machine) for them,
