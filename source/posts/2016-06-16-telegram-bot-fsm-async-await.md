@@ -48,8 +48,8 @@ for ESLint to play nicely with our async functions. I'm also using `nodemon` to 
 The runtime dependencies include `babel` and `babel-register` to easily transpile our code, Babel's preset for ES2015 and
 `dotenv` to load the bot's token from a `.env` file.
 
-The `index.js` file simply uses `dotenv` to load the environment variables from `.env`, start `babel-register` and initialize
-the bot (which at this point just logs to the console and finishes).
+The `index.js` file simply uses `dotenv` to load the environment variables from `.env`, starts `babel-register` and initializes
+the bot (which at this point just logs to the console and exits).
 
 The rest are configuration files for the various tools - `.eslintrc` for ESLint, `.babelrc` for Babel, `.nvmrc` to specify
 Node's version with NVM and `.editorconfig` to keep a consistent style while writing the code.
@@ -62,10 +62,10 @@ that, talk to [@BotFather](https://web.telegram.org/#/im?tgaddr=tg%3A%2F%2Fresol
 It boils down to giving your bot a name. After that, you'll get a token that the bot will use to identify itself when querying
 Telegram's API. Keep that somewhere safe and let's start working on some basic functionality.
 
-First things first, for a while I've been coding the interaction with Telegram's API manually, using `request` or `got` to
-make the requests. There are a number of already implemented solutions available in NPM so this time I went with
-[`node-telegram-bot-api`](https://www.npmjs.com/package/node-telegram-bot-api). It has most of the API functionality implemented
-and it handles replies very well. So let's install it:
+First things first, for a while I've been coding the interaction with Telegram's API manually, using [`request`](https://www.npmjs.com/package/request)
+or [`got`](https://www.npmjs.com/package/got) to make the requests. There are a number of already implemented solutions available
+in NPM so this time I went with [`node-telegram-bot-api`](https://www.npmjs.com/package/node-telegram-bot-api). It has most of
+the API functionality implemented and it handles replies very well. So let's install it:
 
 ```
 npm i node-telegram-bot-api --save
@@ -91,7 +91,7 @@ export default class Bot {
 ```
 
 Note that we need to pass two parameters to the client - the `token` is pretty simple, it's the token we got from @BotFather.
-Now the options object is setting up the client to poll for updates. Your bot has two ways to get messages from Telegram. The
+The options object is setting up the client to poll for updates. Your bot has two ways to get messages from Telegram. The
 first one is using a webhook. You can configure the platform to push the messages to some endpoint that you own and read the
 messages from there. This is a clean solution but at the same time it implies more configuration. For instance, the endpoint
 _has_ to be accessible through HTTPS. Self-signed certificates work, but it's still more troublesome to configure that than
@@ -139,9 +139,9 @@ For that, we want to force the user to reply to each echo of the bot. You can se
 
 This could've been done without waiting for replies - just make the bot send the message "Stopping" if the user sent the message
 "stop". It wouldn't actually _stop_ doing anything, but the end result would be the same. Let's do it waiting for a user reply
-for now and then we'll an example which really needs the replies in the next step.
+for now and then we'll see an example which really needs the replies in the next step.
 
-We'll use the [`ForceReply`](https://core.telegram.org/bots/api#forcereply) option in the send messages API to do make Telegram
+We'll use the [`ForceReply`](https://core.telegram.org/bots/api#forcereply) option in the send messages API to make Telegram
 automatically show the user the UI to reply to the bot's last message. Our code for sending the echo will now look like this:
 
 ```js
@@ -152,9 +152,9 @@ this.client.sendMessage(message.chat.id,
 
 Note that we have to pass the options as a string, so we'll use `JSON.stringify` for that.
 
-`sendMessage` returns a promise, that gets resolved with the sent message once it went through and which has some interesting
+`sendMessage` returns a promise that gets resolved with the sent message once it went through and which has some interesting
 information about it, namely its id which can be used to wait for a reply. `node-telegram-bot-api` has a method called
-`onReplyToMessage` which will execute a callback when a message comes that is a reply for a specified message id. So let's put
+`onReplyToMessage` which will execute a callback when a message comes that is a reply for a specific message id. So let's put
 those two together to handle our user's first reply:
 
 ```js
@@ -165,7 +165,7 @@ this.client.sendMessage(message.chat.id,
 ```
 
 Nice. So what do we actually want to do with the reply? Well, if `reply.text === 'stop'`, we want to stop echoing, otherwise
-we want to echo again. And wait for a reply. So basically the same thing we just did. Let's extract it to a method then:
+we want to echo again. And wait for another reply. So basically the same thing we just did. Let's extract it to a method then:
 
 ```js
 respondTo(message) {
@@ -192,7 +192,8 @@ respondToMessage(message) {
 }
 ```
 
-That should do the trick, right? Well, yes. But what if the code could look more like this:
+That should do the trick, right? Well, yes. But the code is (maybe arguably) harder to read than if it were synchronous. We
+have some nesting when the algorithm is basically a `while` loop. So what if the code could look more like this:
 
 ```js
 respondTo(message) {
@@ -219,8 +220,8 @@ promises very straightforward.
 The first keyword, `async`, is used in function declarations to make it clear that they are asynchronous. In practice, this means
 that they'll return promises. In our case, we just need to declare `respondTo` as `async respondTo`.
 
-`await` can only be used in `async` functions. It will take the promise following it and stop execution until it resolves. So,
-roughly, the following two snippets are equivalent:
+`await` can only be used in `async` functions. It will take the promise following it and stop execution until it resolves. Putting
+the two of them together means that, roughly, the following two snippets are equivalent:
 
 ```js
 function syncFunction() {
@@ -239,9 +240,32 @@ async function asyncFunction() {
 }
 ```
 
-Going back to our code, we can use it directly with `this.client.sendMessage` since, as we saw before, it returns a promise.
-`this.client.onReplyToMessage` is a little bit trickier - it doesn't return a promise, instead it executes a callback that it
-receives as the last parameter when the reply arrives. We'll have to turn it into a promise, but luckily that's not hard at all:
+Going back to our code, the first step we need to take is to configure Babel to support async functions. Since they're not
+part of the spec yet, they aren't supported by default. So first, we want to install `babel-plugin-transform-async-to-generator`
+along with `babel-polyfill`:
+
+```
+npm i babel-plugin-transform-async-to-generator babel-polyfill --save
+```
+
+Once that's done, we need to add `require('babel-polyfill')` before requiring `babel-register` in our `index.js` file, and
+configure Babel to use the async transformation plugin in our `.babelrc` file:
+
+```json
+{
+  "presets": [
+    "es2015"
+  ],
+  "plugins": [
+    "transform-async-to-generator"
+  ]
+}
+```
+
+Now we can go and use async functions in the bot's code. We can use `await` directly with `this.client.sendMessage` since,
+as we saw before, it returns a promise. `this.client.onReplyToMessage` is a little bit trickier - it doesn't return a promise,
+instead it executes a callback that it receives as the last parameter when the reply arrives. We'll have to turn it into a
+promise, but luckily that's not hard at all:
 
 ```js
 let reply = await new Promise(resolve =>
@@ -249,7 +273,7 @@ let reply = await new Promise(resolve =>
 )
 ```
 
-I won't go into the details of promise creation since there are good articles out there, but the gist of it is that we're creating
+I won't go into the details of promise creation since there are good posts out there, but the gist of it is that we're creating
 a new promise that gets resolved when `this.client.onReplyToMessage` executes its callback, and the value it resolves to is
 the parameter that's passed to that callback. So if we put everything together, we end up with something like this:
 
@@ -303,7 +327,7 @@ and being able to transition between them:
 
 ![Bot states](2016-06-16-telegram-bot-fsm-async-await/fsm.png)
 
-Now, it's been a while since I studied finite state machines so I'm not going to pretend I remember them well enough to explain
+It's been a while since I studied finite state machines so I'm not going to pretend I remember them well enough to explain
 it here. I'll refer to the always trustworthy [Wikipedia article](https://en.wikipedia.org/wiki/Finite-state_machine) for them,
 but if you want a quick explanation that's enough for the purposes of this post, here it goes.
 
@@ -351,8 +375,8 @@ function createFsm() {
 ```
 
 If you take a look at each event, they represent the transitions defined in the diagram. The states aren't explicitly listed,
-but you'll see all of them in the transitions. We can use that function in `respondTo` now to get a new FSM for the conversation.
-Also, now we have a fancier way to check if the conversation ended - we can use the method `isFinished` from the state machine
+but you'll see all of them in the transitions. We can use that function in `respondTo` to get a new FSM for the conversation.
+Also, now we have a fancier way to check if the conversation has ended - we can use the method `isFinished` from the state machine
 to check for a final state. Let's update the code then:
 
 ```js
@@ -386,8 +410,8 @@ Notice that we have a `lastMessage` variable that's not defined yet. Let's keep 
 but basically it holds the last message the bot sent, so we can then wait for a reply to it.
 
 Also notice that we're calling `fsm[event](lastReply)` to make the FSM transition states. The FSM has a method for each event
-we defined for it that will trigger such event. Also, we can pass arbitrary parameters to that method, which we'll use later
-in the callbacks.
+we defined for it that will trigger such event. We can pass arbitrary parameters to that method, which we'll use later in the
+callbacks.
 
 Let's go to that `eventFromStateAndMessageText` function now. We'll pass the current machine state and the text from the last
 user reply, and expect to receive a string with the event. We consider the case where the event is `undefined`, because it can
@@ -419,12 +443,14 @@ function eventFromStateAndMessageText(state, text) {
 }
 ```
 
-Nothing too fancy here. Now to the last part: where are we actually replying to the user? Well, the FSM provides us with a couple
-of callbacks, namely when the machine enters and leaves a state, and before and after executing an event. Each have their use
+### Defining the machine's behavior
+
+Now to the last part: where are we actually replying to the user? Well, the FSM provides us with a couple
+of callbacks, specifically when the machine enters and leaves a state, and before and after executing an event. Each have their use
 cases, but the way we thought our bot here I believe using the event callbacks makes sense - after I get /start, I want to ask
 for the name. After I got a name, I want to start echoing, and so on.
 
-We want to attach this callbacks to the machine inside `respondTo` though, because we need some context for them - we want the
+We want to attach these callbacks to the machine inside `respondTo` though, because we need some context for them - we want the
 chat id we're responding to, and we want access to the Telegram client to be able to send messages back. So, before the `while`
 loop we'll define all the callbacks:
 
@@ -456,7 +482,7 @@ fsm.ongottext = (event, from, to, message) => {
 
 I omitted some callbacks for brevity, but they're all pretty similar. That, I believe, is what makes modeling the bot as a FSM
 so useful. We can separate the transitions (I got this message and I was waiting for this other thing) from the actual behavior
-once a transition is applied. Our `oncancelled` callback nows that we were echoing and got a /stop command, that was then
+once a transition is applied. Our `oncancelled` callback knows that we were echoing and got a /stop command, that was then
 cancelled. All it has to do is send the appropriate message back. Not even transition to another state - the FSM will handle it.
 
 We defined two new variables that we'll need across different messages outside of the callbacks - `name`, where we'll store
