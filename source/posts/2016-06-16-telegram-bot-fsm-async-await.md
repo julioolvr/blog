@@ -1,7 +1,7 @@
 ---
 title: Creating a conversational Telegram bot in Node.js with a finite state machine and async/await
 tags: javascript, telegram, bots, node
-image: 2016-06-16-telegram-bot-fsm-async-await/bot.gif
+image: /2016-06-16-telegram-bot-fsm-async-await/bot.gif
 twitter_summary: When putting a bunch of buzzwords together just makes sense.
 ---
 
