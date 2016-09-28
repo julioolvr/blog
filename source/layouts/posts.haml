@@ -3,7 +3,7 @@
   %meta{ name: 'twitter:site', content: '@julioolvr' }
   %meta{ name: 'twitter:title', content: current_article.title }
   %meta{ name: 'twitter:description', content: current_article.data[:twitter_summary] || html_to_plain_text(current_article.summary) }
-  %meta{ name: 'twitter:image', content: current_article.data[:image] }
+  %meta{ name: 'twitter:image', content: absolute_url(current_article.data[:image]) }
 
 = wrap_layout :layout do
   %article.post
