@@ -13,11 +13,11 @@ $borderColor: #dfdfdf;
   .sidebar-profile-pic {
     width: 150px;
     height: 150px;
-    border-bottom: solid 2px darken($link, 10%);
+    box-shadow: rgba(0,0,0,.3) 0px 2px 2px;
   }
 
   .sidebar-bio {
-    margin: 1em 0;
+    margin: 2em 0;
     padding: 0;
     list-style: none;
     font-family: 'Roboto', sans-serif;
