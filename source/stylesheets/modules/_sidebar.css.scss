@@ -13,7 +13,7 @@ $borderColor: #dfdfdf;
   .sidebar-profile-pic {
     width: 150px;
     height: 150px;
-    border-bottom: solid 2px $link;
+    border-bottom: solid 2px darken($link, 10%);
   }
 
   .sidebar-bio {
