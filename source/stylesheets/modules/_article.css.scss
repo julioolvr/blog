@@ -31,7 +31,17 @@
 
 .index-post {
   & > h2 {
+    $movement-duration: .1s;
+    $movement-distance: .5em;
+    $timing-function: ease-out;
+
     margin-bottom: 0;
+    transition: margin-left $movement-duration $timing-function, padding-right $movement-duration $timing-function;
+
+    &:hover {
+      margin-left: -$movement-distance;
+      padding-right: $movement-distance;
+    }
   }
 
   .index-post-date {
