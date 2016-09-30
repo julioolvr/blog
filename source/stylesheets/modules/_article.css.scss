@@ -35,7 +35,7 @@
   }
 
   .index-post-date {
-    font-style: italic;
+    color: gray;
     @include adjust-font-size-to(12px);
   }
 }
