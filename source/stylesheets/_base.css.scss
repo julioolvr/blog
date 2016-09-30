@@ -27,6 +27,20 @@ h1, h2, h3, h4 {
   }
 }
 
+h2, h3, h4 {
+  margin-top: 1em;
+  padding-top: 1em;
+}
+
 pre {
   white-space: pre;
+}
+
+p {
+  line-height: 1.5;
+  color: #454545;
+}
+
+strong {
+  color: #333;
 }
