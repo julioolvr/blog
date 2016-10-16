@@ -4,6 +4,8 @@
   %meta{ name: 'twitter:title', content: current_article.title }
   %meta{ name: 'twitter:description', content: current_article.data[:twitter_summary] || html_to_plain_text(current_article.summary) }
   %meta{ name: 'twitter:image', content: absolute_url(current_article.data[:image]) }
+  %meta{ name: 'twitter:label1', value: 'Reading time' }
+  %meta{ name: 'twitter:data1', value: reading_time(current_article) }
 
 = wrap_layout :layout do
   %article.post

@@ -16,3 +16,4 @@ gem "redcarpet"
 gem "builder"
 gem "nokogiri"
 gem "rouge", github: 'alexpate/rouge', ref: 'a48878bd610f8919af5492ebdb95a1829673c1c1'
+gem "article_readingtime"
