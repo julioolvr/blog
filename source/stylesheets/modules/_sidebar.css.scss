@@ -1,40 +1,20 @@
 @import "compass";
-@import "susy";
-
-$borderColor: #dfdfdf;
 
 .sidebar {
-  height: 100%;
-  padding-top: 100px;
-  background-color: rgba(#fff, 0.5);
-  position: fixed;
-  border-left: 1px solid $borderColor;
-
-  .sidebar-profile-pic {
-    width: 150px;
-    height: 150px;
-    box-shadow: rgba(0,0,0,.3) 0px 2px 2px;
-  }
+  display: flex;
+  align-items: center;
+  padding-top: 2em;
 
   .sidebar-bio {
-    margin: 2em 0;
-    padding: 0;
     list-style: none;
     font-family: 'Roboto', sans-serif;
     font-weight: 300;
     @include adjust-font-size-to(12px);
   }
-}
 
-@include at-breakpoint(5 800px) {
-  .sidebar {
-    position: static;
-    padding-top: 0;
-    border-left: none;
-    border-top: 1px solid $borderColor;
-
-    .sidebar-profile-pic {
-      display: none;
-    }
+  .sidebar-profile-pic {
+    width: 150px;
+    height: 150px;
+    box-shadow: rgba(0,0,0,.3) 0px 2px 2px;
   }
 }
